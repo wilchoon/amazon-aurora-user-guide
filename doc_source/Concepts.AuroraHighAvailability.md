@@ -4,6 +4,10 @@ Aurora stores copies of the data in a DB cluster across multiple Availability Zo
 
 In an Aurora cluster using single\-master replication, when you create reader instances across Availability Zones, Amazon RDS automatically provisions and maintains them synchronously\. The primary DB instance is synchronously replicated across Availability Zones to Aurora Replicas to provide data redundancy, eliminate I/O freezes, and minimize latency spikes during system backups\. Running a DB instance with high availability can enhance availability during planned system maintenance, and help protect your databases against failure and Availability Zone disruption\. For more information on Availability Zones, see [Choosing the Regions and Availability Zones](Concepts.RegionsAndAvailabilityZones.md)\.
 
+*From the above documentation above I believe the information is wrong suggesting that is wrong on saying "The primary DB instance is synchronously replicated across Availability Zones to Aurora Replicas to provide data redundancy, eliminate I/O freezes, and minimize latency spikes during system backups"
+
+Aurora backups are continous and are doing at the proprietary storage layer without affecting the instances(nodes). Also the replication between the master and the read repicas is asynchrounous and NOT is asynchrounous as stated in the above paragraph.
+
 Using the RDS console, you can create a Multi\-AZ deployment by simply specifying Multi\-AZ when creating a DB cluster\. If a DB cluster is in a single Availability Zone, you can make it a Multi\-AZ DB cluster adding another DB instance in a different Availability Zone\.
 
 You can specify a Multi\-AZ deployment using the CLI as well\. Use the AWS CLI [describe\-db\-instances](https://docs.aws.amazon.com/cli/latest/reference/rds/describe-db-instances.html) command, or the Amazon RDS API [DescribeDBInstances](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html) operation to show the Availability Zone of the standby replica \(called the secondary AZ\)\. 
